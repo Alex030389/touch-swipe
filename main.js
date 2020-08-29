@@ -11,7 +11,7 @@ $(".list__text").swipe({
 		// $(this).text("You swiped " + direction + " for " + distance + "px" );
 
 		
-		if(direction == 'left' && distance > 80) {
+		if(direction == 'left' && distance > 50) {
 			$('.list__text').animate({'left': '0px'}, 200);
 			$(this).animate({'left': '-160px'}, 300);
 		}
