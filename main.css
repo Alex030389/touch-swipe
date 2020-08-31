@@ -27,10 +27,15 @@ body {
 	font-size: 20px;
 	padding: 10px;
 	position: relative;
+	transition: .3s;
 }
 
 .list__item:nth-child(even) .list__text {
 	background-color: #FBFBFD;
+}
+
+.list__text._open {
+	transform: translateX(-160px);
 }
 
 .list__box-btn {

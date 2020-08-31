@@ -1,24 +1,30 @@
 'use strict';
-// $('.list__text').css({'left': '-160px'});
-
-
 $('.list__btn._red').on('click',function() {
-	$(this).closest('.list__item').fadeOut(100);
+	$(this).closest('.list__item').fadeOut(200);
 })
 
-$(".list__text").swipe({
-  swipe:function(event, direction, distance, duration, fingerCount){
-		// $(this).text("You swiped " + direction + " for " + distance + "px" );
+touchSwipe();
 
-		
-		if(direction == 'left' && distance > 50) {
-			$('.list__text').animate({'left': '0px'}, 200);
-			$(this).animate({'left': '-160px'}, 300);
-		}
+$(window).resize(function() {
+	touchSwipe();	
+})
 
-		if(direction == 'right') {
-			$(this).animate({'left': '0px'}, 300);
-		}
-  },
-  nav:10
-});
+function touchSwipe() {
+	if($(window).width() < 576) {
+
+		$(".list__text").swipe({
+			swipeLeft:function() {
+				$('.list__text').not(this).removeClass('_open');
+				$(this).addClass('_open');		
+			},
+			swipeRight:function() {
+				$(this).removeClass('_open');
+			},
+			threshold: 50,
+		});
+	} else {
+		$('.list__text').each(function(indx, element) {
+			$('.list__text').eq(indx).swipe('destroy');
+		});
+	}
+}
